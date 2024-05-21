@@ -17,8 +17,105 @@
 }
 
 [data-testid="stMetric"] {
-  border: 2px solid #73AD21;
-  border-radius: 15px;
-  border-color: #F8F8FF;
+  color: rgb(0, 0, 0);
+  border: 2px solid;
+  border-radius: 30px;
+  border-color: #265c4b57;
+  padding: 30px; 
+  
+  text-align: center;
+}
+
+/* Estilizar o fundo da aplicação */
+body {
+  background-color: #f4f4f9; 
+}
+
+/* Estilizar os títulos */
+h1, h2, h3, h4 {
+  color: #000000c7; 
+  font-family: 'Arial', sans-serif; 
+  text-align: center; 
+}
+
+/* Adicionar sombra aos gráficos */
+.stPlotlyChart {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  border-radius: 10px; 
+  margin: 20px 0; 
+}
+
+/* Estilizar os botões */
+button {
+  background-color: #265C4B; 
+  color: white; 
+  border: none; 
+  padding: 10px 20px; 
+  border-radius: 5px; 
+  cursor: pointer; 
+}
+
+button:hover {
+  background-color: #21445B; /* Cor de fundo ao passar o mouse */
+}
+
+/* Estilizar os select boxes e multiselect */
+select, .stMultiSelect, .stSelectbox {
+  background-color: #fff; 
+  border: 2px solid #265C4B; 
+  border-radius: 8px; 
+  padding: 10px; 
+  margin-bottom: 10px; 
+  color: #265C4B; 
+}
+
+/* Estilizar a sidebar */
+.stSidebar {
+  background-color: #ffffff; 
   padding: 20px; 
+  border-right: 2px solid #265C4B; 
+}
+
+.stSidebar h1 {
+  color: #265C4B; 
+}
+
+/* Ajustar o espaçamento entre os elementos */
+.stMarkdownContainer {
+  margin-bottom: 20px; 
+}
+
+/* Estilizar as métricas */
+.stMetric {
+  background-color: #ffffff; 
+  border: 2px solid #265C4B; 
+  border-radius: 10px; 
+  padding: 10px; 
+  margin: 10px; 
+  text-align: center; 
+}
+
+
+/* Estilizar os botões do "Tipo de produto" */
+[data-baseweb="tag"] {
+  background-color: #265C4B; 
+  color: white; 
+  border-radius: 5px; 
+  padding: 5px 10px; 
+  margin: 5px; 
+}
+
+[data-baseweb="tag"] .close-icon {
+  color: white; /
+}
+
+/* Estilizar os botões ao passar o mouse */
+[data-baseweb="tag"]:hover {
+  background-color: #265c4bb4; /
+  cursor: pointer; 
+}
+
+/* Estilizar o contorno dos botões selecionados */
+[data-baseweb="tag"]:focus {
+  border: 2px solid #ffffff; 
 }

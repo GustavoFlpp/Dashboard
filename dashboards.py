@@ -55,14 +55,16 @@ st.markdown('''#### Faturamento por filial''')
 cols2 = st.columns((2, 3), gap='medium')
 with cols2[0]:
     city_total = df_filtered.groupby(["City", 'Customer type'])[["Total"]].sum().reset_index()
-    fig_city = px.bar(city_total, x="City", y="Total",color="City", facet_col='Customer type')
+    fig_city = px.bar(city_total, x="City", y="Total",color="City", facet_col='Customer type', 
+                      color_discrete_sequence=['#265C4B', '#589A8D','#8FC1B5'])
     fig_city.update_layout(yaxis_title=None, showlegend=False)
     fig_city.update_xaxes(categoryorder='array', categoryarray=sorted(df_filtered["City"].unique()))
     st.plotly_chart(fig_city, use_container_width=True)
 
 with cols2[1]:
     fig_perday = px.area(df_filtered, x='Date', y='Total', color='City', facet_row='City', 
-                         category_orders={"City": sorted(df_filtered["City"].unique())})
+                         category_orders={"City": sorted(df_filtered["City"].unique())}, 
+                         color_discrete_sequence=['#388A70', '#69B8A8','#A5DEBB'])
     fig_perday.for_each_annotation(lambda a: a.update(text=''))
     fig_perday.update_layout(legend=dict(orientation="h",yanchor="bottom",y=1.01,xanchor='left'), legend_title=None)
     st.plotly_chart(fig_perday, use_container_width=True)
@@ -74,15 +76,18 @@ cols3 = st.columns((2, 1, 2))
 with cols3[0]:
     # Cria um gráfico de barras do faturamento por tipo de produto, dividido por cidade
     products_total = df_filtered.groupby(['Product line', 'City'])['Total'].sum().reset_index()
-    fig_prod = px.bar(products_total, x="Total", y='Product line', color="City", title="Faturamento por tipo de produto", orientation="h")
-    fig_prod.update_layout(legend=dict(orientation="h",yanchor="bottom",y=1.01,xanchor='left'), legend_title=None, yaxis_title=None)
+    fig_prod = px.bar(products_total, x="Total", y='Product line', color="City", 
+                      title="Faturamento por tipo de produto", orientation="h", 
+                      color_discrete_sequence=['#265C4B', '#589A8D','#8FC1B5'])  # Cores em formato hexadecimal
+    fig_prod.update_layout(legend=dict(orientation="h", yanchor="bottom", y=1.01, xanchor='left'), 
+                           legend_title=None, yaxis_title=None)
     st.plotly_chart(fig_prod, use_container_width=True)
 
 
 with cols3[1]:
     # Cria um gráfico de pizza do faturamento por tipo de pagamento
     fig_kind = px.pie(df_filtered, values="Total", names="Payment", title="Tipos de pagamento",
-                      color_discrete_sequence=px.colors.sequential.PuBu)
+                      color_discrete_sequence=['#503A5E', '#323050', '#21445B'])
     fig_kind.update_traces(textposition='inside', textinfo='percent+label')
     fig_kind.update_layout(showlegend=False)
     # Exibe o gráfico na quarta coluna
@@ -90,7 +95,7 @@ with cols3[1]:
 
 with cols3[2]:
     fig_hist = px.histogram(df_filtered, x="Rating",  color="City", marginal="box", title='Avaliações',
-                            category_orders={'City': sorted(df_filtered["City"].unique())})
+                            category_orders={'City': sorted(df_filtered["City"].unique())}, color_discrete_sequence=['#265C4B', '#589A8D','#8FC1B5'])
     fig_hist.update_layout(legend=dict(orientation="h",yanchor="bottom",y=1.01,xanchor='left'), legend_title=None)
     # fig_hist.update_layout(showlegend=False)
     st.plotly_chart(fig_hist, use_container_width=True)
